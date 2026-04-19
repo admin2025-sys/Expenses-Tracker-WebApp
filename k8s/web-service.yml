@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  namespace: webapp-namespace
+  labels:
+    app: expense
+
+spec:
+  type: NodePort   # NodePort not needed for internal DB
+  selector:
+    app: expense
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    nodePort: 30080
