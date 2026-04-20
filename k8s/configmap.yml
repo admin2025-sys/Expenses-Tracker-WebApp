@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-config
+  namespace: webapp-namespace
+data:
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/expenses_tracker?allowPublicKeyRetrieval=true&useSSL=false
+  MYSQL_DATABASE: expenses_tracker

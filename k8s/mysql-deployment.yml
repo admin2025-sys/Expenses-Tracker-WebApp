@@ -22,7 +22,14 @@ spec:
         ports:
         - containerPort: 3306
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "Test@123"
-        - name: MYSQL_DATABASE
-          value: "expenses_tracker" 
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: MYSQL_ROOT_PASSWORD
+
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: webapp-config
+                key: MYSQL_DATABASE 

@@ -34,8 +34,19 @@ spec:
         - containerPort: 8080
         env:
         - name: SPRING_DATASOURCE_USERNAME
-          value: "root"
+          valueFrom:
+            configMapKeyRef:
+              name: webapp-config
+              key: SPRING_DATASOURCE_USERNAME
+
         - name: SPRING_DATASOURCE_URL
-          value: "jdbc:mysql://mysql:3306/expenses_tracker?allowPublicKeyRetrieval=true&useSSL=false"
+          valueFrom:
+            configMapKeyRef:
+              name: webapp-config
+              key: SPRING_DATASOURCE_URL
+
         - name: SPRING_DATASOURCE_PASSWORD
-          value: "Test@123"
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: SPRING_DATASOURCE_PASSWORD
